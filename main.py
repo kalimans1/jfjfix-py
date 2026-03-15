@@ -14,6 +14,36 @@ import time
 import websocket
 os.system("clear||cls")
 
+# --- DISCORD.PY-SELF FIX START ---
+from discord.gateway import DiscordWebSocket
+
+async def patched_identify(self):
+    payload = {
+        'op': self.IDENTIFY,
+        'd': {
+            'token': self.token,
+            'properties': {
+                '$os': 'Windows',
+                '$browser': 'Chrome',
+                '$device': '',
+                '$referrer': '',
+                '$referring_domain': '',
+            },
+            'compress': self._compress,
+            'large_threshold': 250,
+        }
+    }
+    if hasattr(self, '_ext_modifiers') and self._ext_modifiers:
+        payload['d'].update(self._ext_modifiers)
+    if self._sequence:
+        payload['d']['sequence'] = self._sequence
+
+    await self.send_json(payload)
+
+DiscordWebSocket.identify = patched_identify
+# --- DISCORD.PY-SELF FIX END ---
+
+
 with open("config.json", "r", encoding="utf-8") as f:
     cf = json.load(f)
 
