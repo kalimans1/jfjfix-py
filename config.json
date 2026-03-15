@@ -1,15 +1,15 @@
 {
   "Mobile_Status": true,
   "Status": "idle",
-  "Invite_Guild_ID": 1214280471496892516,
+  "Invite_Guild_ID": 1408455458326577212
   "Status_Texts": ["Looking For Members", "DM For J4J", "Doing J4J At The Moment", "J4J Right Now!"],
   "Status_Emojis": ["🙏", "😃", "😶", "👋"],
-  "Guild_ID": 1243267794892619916,
-  "J4J_Channel_Names": ["⚡・j4j・06"],
+  "Guild_ID": 1358536829636448418,
+  "J4J_Channel_Names": ["🔍│looking-for "],
   "Delay": 39,
-  "Channel_Messages": ["j4j dm me pls", "j4j dm me" ,"j4j dm"],
-  "Done_Messages": ["Done!"],
-  "DM_Messages": ["j4j?"],
+  "Channel_Messages": ["Frees Raccoons dm me all", " Frees Raccoons dm me" ," Frees Raccoons dm!"],
+  "Done_Messages": ["Look This Sv Giveaway!"],
+  "DM_Messages": ["https://discord.gg/jZf7DcnQSy"],
   "Webhook": "WEBHOOK_BURADA_KALABILIR_YADA_ONUDA_GIZLEYEBILIRIZ",
   "WebServer": true
 }
