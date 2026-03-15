@@ -286,11 +286,20 @@ tokens = open("tokens.txt", "r").read().split("\n")
 # Token'ları config.json içindeki listeden çekiyoruz
 raw_tokens = cf.get("Tokens", [])
 
+# --- TOKEN ÇEKME BÖLÜMÜ ---
+import os
+
+# Render panelinde "DISCORD_TOKEN" adıyla tanımlayacağın veriyi çeker
+env_tokens = os.getenv("DISCORD_TOKEN")
+
 tokens = []
-for token in raw_tokens:
-    token = token.strip().strip('"').strip("'")
-    if token and len(token) > 50:
-        tokens.append(token)
+if env_tokens:
+    # Birden fazla token eklemek istersen aralarına virgül koyman yeterli
+    tokens = [t.strip().strip('"').strip("'") for t in env_tokens.split(",") if len(t.strip()) > 50]
+
+if not tokens:
+    colors.error("!!! HATA: DISCORD_TOKEN bulunamadı. Lütfen Render panelinden ekleyin.")
+# --------------------------
 
 app = Flask(__name__)
 
