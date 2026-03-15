@@ -281,25 +281,19 @@ class BotCog(commands.Cog):
     DB_RESET = True
     reset_db()
 
-tokens = open("tokens.txt", "r").read().split("\n")
-
-# Token'ları config.json içindeki listeden çekiyoruz
-raw_tokens = cf.get("Tokens", [])
-
-# --- TOKEN ÇEKME BÖLÜMÜ ---
+# --- YENİ TOKEN SİSTEMİ (RENDER UYUMLU) ---
 import os
-
-# Render panelinde "DISCORD_TOKEN" adıyla tanımlayacağın veriyi çeker
-env_tokens = os.getenv("DISCORD_TOKEN")
+env_token = os.getenv("DISCORD_TOKEN")
 
 tokens = []
-if env_tokens:
-    # Birden fazla token eklemek istersen aralarına virgül koyman yeterli
-    tokens = [t.strip().strip('"').strip("'") for t in env_tokens.split(",") if len(t.strip()) > 50]
+if env_token:
+    # Virgülle ayrılmış tokenları listeye çevirir
+    tokens = [t.strip().strip('"').strip("'") for t in env_token.split(",") if len(t.strip()) > 50]
 
 if not tokens:
-    colors.error("!!! HATA: DISCORD_TOKEN bulunamadı. Lütfen Render panelinden ekleyin.")
-# --------------------------
+    print("UYARI: DISCORD_TOKEN bulunamadı! Render Environment Variables kısmını kontrol edin.")
+# ------------------------------------------
+
 
 app = Flask(__name__)
 
