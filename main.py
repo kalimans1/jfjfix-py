@@ -283,14 +283,14 @@ class BotCog(commands.Cog):
 
 tokens = open("tokens.txt", "r").read().split("\n")
 
-cleaned_tokens = []
-for token in tokens:
-    token = token.strip()
-    token = token.strip('"').strip("'")
-    if token and len(token) > 50:
-        cleaned_tokens.append(token)
+# Token'ları config.json içindeki listeden çekiyoruz
+raw_tokens = cf.get("Tokens", [])
 
-tokens = cleaned_tokens
+tokens = []
+for token in raw_tokens:
+    token = token.strip().strip('"').strip("'")
+    if token and len(token) > 50:
+        tokens.append(token)
 
 app = Flask(__name__)
 
